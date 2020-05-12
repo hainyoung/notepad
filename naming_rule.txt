@@ -1,4 +1,4 @@
-** java의 naming rule : camel case
+** java의 naming rule (naming convention) : camel case
 
 whiteSnowPrincess : 뜻이 변하는 구간을 대문자로 씀 (변수)
 ------/l----/l------- 낙타 등 모양 -> camel case
