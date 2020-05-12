@@ -1,0 +1,9 @@
+* hyperparameter tuning
+
+1. layer의 깊이
+2. node의 갯수
+3. epochs 설정
+4. batch_size 설정
+
+deep을 통해 기계 machine training을 시킴
+-> "deep learning"
