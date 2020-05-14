@@ -77,9 +77,13 @@ why?
 acc(R2) 의 수치가 요동치기 전까지의 그 point가 최적점
 여기서 끊어야 좋은 model이 만들어짐
 -> early stopping 이라고 함.
+(Early stopping 은 무조건 Epoch 을 많이 돌린 후, 특정 시점에서 멈추는 것)
 
-
-
+loss의 경우는 어떨까? (mse, rmse)
+acc, R2의 그래프와는 반대로 epochs가 증가함에 따라 점점 낮아지다가
+어느 지점부터 그래프는 요동 침
+이 때, 이 지점은 acc(or R2)가 요동치는 지점과 같을 것이며
+이 역시 마찬가지 early stopping 해야 함
 
 
 
