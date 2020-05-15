@@ -1,0 +1,86 @@
+2020년 05월 15일
+
+
+지금까지는 입력되는 column(열)의 수가 1개였음
+(행 : row/ 행렬 : matrix)
+지금부터 2개 이상의 column을 입력하는 경우의 코딩을 해 봄
+
+column의 수가 2개 이상이 된다면 지금까지 한 코딩과는 뭐가 다를까?
+- 데이터 달라짐
+- input_dim도 달라짐
+- output은 1일 수도 아닐 수도
+
+1. data 수정
+x = np.array(range(1,101), range(311,411), range(100))
+y = np.array(range(101,201), range(711,811), range(100)) 
+
+print(x) -> 오류 발생 why? 두 개 받아들일 수 없다. 한마디로 문법이 잘못 되었음
+
+연예인 합성 사진
+2세 사진 예측
+
+3개의 덩어리들을 묶어줘야 함.
+list로 묶어주지 않아서 오류 발생.
+range(1,101) range(311,411), range(100) 한 덩어리로 묶어줘야함
+
+x = np.array([range(1,101), range(311,411), range(100)])
+y = np.array([range(101,201), range(711,811), range(100)]) 
+
+[]로 묶어주면 list라고 알아먹음
+
+x range(1,101)
+y range(101,201)
+w=1, bias=100
+
+x range(311,411)
+y range(711,811)
+w=1, bias=400
+
+x range(100) 은 0~99 
+y range(100) 은 0~99 
+w=1, bias=0
+
+data의 구조 몇 행 몇 열? 3행 100열
+
+shape : 모양, 구조
+print(x.shape) : x의 구조를 알 수 있음
+
+
+현재 x.shape 3행 100열
+100행 3열로 바꿔줘야 우리가 원하는 data 구조가 만들어짐
+행과 열 위치를 바꿔주는 함수는?\
+np.transpose(데이터이름)
+
+x = np.transpose(x)
+y = np.transpose(y)
+
+3행 100열이 100행 3열로 바뀜
+그리고 column의 수가 바뀌었으니 input_dim도 수정해줘야 함
+플러스 output도 바꿔줘야 함
+
+input_dim = 3
+마지막 layer도 1이 아닌 3으로.
+
+
+************************************
+linkedin  영어로 이력서 작성
+kaggle 중요. 이야기할 것이 생김
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
