@@ -41,4 +41,6 @@ https://medium.com/@stargt/github%EC%97%90-100mb-%EC%9D%B4%EC%83%81%EC%9D%98-%ED
 git reset HEAD^ 명령어 입력하면
 하나하나 commit 전 단계로 지워짐 커밋이 되돌려짐
 그리고 다시 파일 올리면 되는데..... 실패함
+git push -u origin +master 
+강제로 push 명령으로 해결...
 
