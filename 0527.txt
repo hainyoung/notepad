@@ -1,0 +1,44 @@
+0527 day13
+
+>>>>>>>>>>>>>오전수업
+
+과제는 선택이 아니고 필수
+최대한 노력해보고 도움을 요청하자
+
+to do list
+이제껏 모델링 한 것들 데이터 크기 참고해서 모델링 다시 하기
+
+어제 과제 review
+mnist 
+
+
+>>>>오후수업
+dropout layer 적용
+
+GPU 설치
+선생님 블로그에서 파일 설치
+cmd 창 - > tensorflow 2.0 삭제 : pip uninstall tensorflow
+pip install tensorflow-gpu==2.0 입력해서 gpu 버전 설치
+-> keras 지우고 다시 설치(엉킨다고함), 
+-> pip uninstall keras -> pip install keras
+
+설치 확인하기
+python 입력 후
+import tensorflow as tf 입력
+tensorflow tf라 해도 됨 이제부터
+print(tf.__version__) 이렇게 tensorflow 버전 확인
+
+
+선생님 gpu_test 파일에 용량 100M 넘는 파일 때문에 깃허브에 올려지지 않음
+
+
+https://medium.com/@stargt/github%EC%97%90-100mb-%EC%9D%B4%EC%83%81%EC%9D%98-%ED%8C%8C%EC%9D%BC%EC%9D%84-%EC%98%AC%EB%A6%AC%EB%8A%94-%EB%B0%A9%EB%B2%95-9d9e6e3b94ef
+
+통해서 github 100M 용량 이상 파일 올리는 방법 실행
+용량 큰 파일 한 번 commit 시도 한 적 있으면
+그 commit 실행을 취소시켜야함
+
+git reset HEAD^ 명령어 입력하면
+하나하나 commit 전 단계로 지워짐 커밋이 되돌려짐
+그리고 다시 파일 올리면 되는데..... 실패함
+
