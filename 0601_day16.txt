@@ -1,0 +1,193 @@
+0601 June!
+
+>>>>오전수업
+
+4주차 돌입
+15일, 120시간 수업 들었음
+
+가중치에 대해선 잘 모르겠음
+
+모델 어느 정도 짜기 시작하면
+데이터 건드릴 줄 알아야 함
+
+>>REVIEW
+전처리!
+train test split
+slicing(이건 데이터 자체를 건드리는 건 아니지만 전처리의 일종이라 볼 수 있다)
+원-핫
+4개의 scaler
+minmax(정규화, 크기를 맞춰주는 것, 어느 정도 범위 안에, 0~1 사이
+standard(표준화, 가로세로 치우쳐저 있는 것들 정규본표 형태로, 평균을 0으로하는
+이상치 제거하는 것 : robust scaler
+maxabs
+
+callbacks : earlystopping, modelcheckpoint, tensorboard
+
+tensorboard : 그래프 그리고 시각화하는 것
+같이 쓰는 것  matplotlib.pyplot
+plot에다가  x, y 값 넣는데 y 값만 변하는 거면 통상적으로 y값만 넣어준다
+두개 이상 일 때 subplot
+figsize로 그래프 사이즈 조절가능(inch 단위)
+
+딥러닝의 모델 2가지
+분류모델(이진 - sigmoid, loss : bianry_crossentropy, 다중 - softmax, loss : categorical_crossentropy)
+- 당연한 것!
+softmax : 전체의 합은 1, 0.1 0.2 0.3 ... 이 있으면 가장 큰 것을 선택해주는 것
+선택한 것에 대해서 보려면  np.argmax 사용해야함
+
+회귀모델(acitvation default가 있을 것, 일단 넘어감
+ 
+
+earlystopping 이미 최적점 지나간 후
+그것에 대해 보완하기 위해서  model checkpoint를 사용
+earlystopping : parameter - patience
+
+modelcheckpoint : 모델이 저장되는 걸 봤음 hdf.5
+
+model.save
+load.model : 저장된 모델 불러올 때 이미 저장된 모델 레이어 이름과 같으면 충돌 나므로
+새로운 레이어 추가할 때 새로운 이름을 지정해줘야 한다 name = ~
+
+
+pca : 차원이 축소가 된다->자동으로 이상치 제거를 해 준다?
+자동이 좋을 수도 있지만 수동으로 처리를 해줘야 할 수도 있다
+n_components : column의 수
+데이터 통 압축
+50개의 데이터가 있다면 평균을 내서(가중평균, 가장 중요한 놈들 수렴함, 자잘한 값을 버리는 건 아님)
+
+대회 나가려면 아직 부족
+파일을 가져오는 것 공부해야함!
+
+모델 한 번씩만 돌렸음 : 자원의 낭비?
+
+우리의 궁극의 목적 : 최적의 가중치를 찾는 것!
+y = wx + b
+모델, 데이터에 따라 모두 다른 가중치
+그런데
+우리가 엔터치고 나면 모두 리셋되었음
+막~~했다가 울트라 최적이 나왔다면?!
+다음에 했는데 그 값이 안 나옴
+그 가중치 저장 가능할까?
+가중치 역시 숫자, 그러므로 저장 가능하다
+저장은 가능하겠지만, 그걸 어떻게 사용할까?
+
+이미 가중치를 저장하고 사용하는 방법을 배웠다???(예? 언제요?)
+model.save 에서?!
+
+과제>>
+3개 중 2개는 분류(iris, breast_cancer), 1개는 회귀(diabetes)
+이진분류 - 2개로 분류 0이나 1로 / 다중분류로 가능함 loss : categorical, y data one-hot 해줘야함(귀찮음)
+다중분류 - 3개 이상 분류
+
+오늘의 수업?
+각종 데이터 불러오고 저장하고, 가중치와 모델을 갖고 놀 것이다
+
+
+save model 할 때 모델만 저장되었을까??
+
+우리는 그래픽카드 혹사시키는 사람들 ㅋㅋ
+석 달 버티면 용한 것
+
+두 가지 시도
+1) fit 한 다음 모델 저장
+-> load 해서 돌린 결과 save 파일의 결과(loss, acc)가 같다
+-> 모델뿐만 아니라 가중치까지 함께 저장되었다는 것
+
+2) 모델 구성 다음 모델 저장
+-> load1 파일에서 실행시키니까
+RuntimeError: You must compile a model before training/testing. Use `model.compile(optimizer, loss)`.
+라는 오류가 발생!
+-> 86번 파일에서 compile, fit 단계를 지운 상태라
+
+모델만 save
+모델 가중치 save
+있으면
+가중치만 save 하는 것도 있지 않을까??
+model.save_weights('./위치/파일명.h5') -> 가중치만 저장됨
+
+89번 파일에서
+2번, 3번 모두 주석 처리 후
+가중치를 불러온다 -> model에 빨간 줄이 생성된다(model이 정의되어 있지 않다는 뜻)
+-> 없애봐라!
+
+저장된 모델 불러오기 시도
+from keras.models import load_model
+model = load_model('/model/model_test01.h5') 
+하니까 모델이 실행된다!
+틀린 건가..?
+
+모델만 저장할 때는 데이터가 없어도 되지만
+가중치만 또는 가중치, 모델 함께 저장하려면 데이터가 있어야 한다!
+
+
+ModelCheckpoint 로
+가장 좋은 놈 고를 수 있다?!
+checkpoint를 저장하니까 모델, weight, 가장 좋았던 checkpoint 지점의 값 모두 저장되고 불러올 수 있다
+
+1. model을 저장하는 방법은 2가지
+1) model 구성을 마친 후 compile, fit 전에 저장 -> 모델 자체만 저장된다
+2) fit을 한 다음 저장 -> 모델 + weight 까지 저장
+
+2. weight를 저장하는 방법
+1) fit 다음 모델을 저장
+2) 또는 model.save_weights를 통해 weight만 저장
+3) checkpoint 저장(checkpoint를 compile, fit 과정 안에 넣어주고 모델 save 하면 된다)
+
+#2번(모델구성), 3번(컴파일, 훈련) 과정을 주석처리하고
+weight 저장한 걸 불러오면 실행이 안 된다
+
+#3번 과정, compile만 주석처리하고
+weight 저장한 것 불러와도 실행 안 된다
+
+#2번과 3번의 compile 주석을 풀어주고
+weight 저장한 것을 불러오면 실행이 된다
+weight 저장 된 것에 fit 과정은 포함 되어 있다
+
+
+3. checkpoint 저장한 것을 불러오면
+
+from keras.models import load_model
+model = load_model('./model/check--08--0.0345.hdf5'
+
+2번, 3번 과정을 모두 주석 처리해도 실행이 된다
+
+
+지금까지 했던 예제 8개 모두
+가장 좋은 모델.py 
+save_model.h5
+save_weight.h5
+checkpoint.hdf5
+
+이런 식으로 각 4개씩 총 32개 만들어서 저장하기
+
+mnist, cifar10, fashionmnist, cifar100, boston, iris, diabetes, cancer
+
+mnist, iris는 완성
+14시 35분 fashionmnist cnn모델로 돌리는 중
+epo 95 현재 66 돌파
+너무 오래 걸린다
+그래도 그나마 튜닝 맞춰 놓고 괜찮은 결과 나왔던 모델 그대로 돌려야 할 것 같아서
+epo나 다른 파라미터 안 고치고 돌리는 중
+오늘 21시 전에 32개 다 할 수 있겠지?
+
+>>>> 오후수업
+파일을npy로 저장하기, 불러오기!
+
+iris 파일을 npy로 저장 해봄
+
+mnist 파일을 npy로 저장해서 파일 만듦(93번)
+mnist npy로 저장한 파일을 불러와서 모델을 구성해봤다(94번)
+
+
+pandas
+C:\Users\bitcamp\anaconda3\Lib\site-packages\sklearn\datasets\data
+csv 파일 복사해서 data 폴더 아래 csv 폴더 만들어서 붙이기
+
+확장 : csv rainbow csv, excel viewr 확장 프로그램 깔기
+
+
+
+
+
+
+
