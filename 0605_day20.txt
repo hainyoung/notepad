@@ -91,9 +91,17 @@ RandomizedSearchCV가 어떤 건지만 이해하면 된다
 마케팅 관련 프로젝트?
 
 
+끝판왕 파이프라인 남았음
+전처리까지 엮어주는
 
+그리고 마지막에는 케라스랑 다 엮는다!
+엮는 구조에 대해서 어느 정도 작업이 이루어질 것이다
+feature importance 도 배워서 데이터 구조에 대해서 더 할 것이다
 
-
+kfold
+gridsearch
+randomizedsearch
+세 개 모두 중요!! 꼭 복습!!
 
 
 
