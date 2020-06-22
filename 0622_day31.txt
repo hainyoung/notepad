@@ -1,0 +1,22 @@
+2020.06.22 day 31 
+7주차 
+
+
+머신러닝에서도 훈련 과정을 볼 수 있다
+머신러닝에서도 early_stopping을 적용시킬 수 있다
+
+키워드 
+verbose = True
+eval_metrics
+(rmse, mae, logloss, error, auc)
+eval_set
+early_stopping
+metric
+graph
+
+
+조직에서 일하려면
+조직이 우선
+서로 룰을 잘 지키자
+
+
