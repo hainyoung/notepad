@@ -1,0 +1,14 @@
+** java의 naming rule (naming convention) : camel case
+
+whiteSnowPrincess : 뜻이 변하는 구간을 대문자로 씀 (변수)
+------/l----/l------- 낙타 등 모양 -> camel case
+WhiteSnowPrincess : 첫 글자가 대문자면 Class로 판단
+물론, 강제성X
+
+
+** python, C의 경우
+
+white_snow_princess (변수)
+White_snow_princess (Class)
+
+** naming rule은 강제성X, 암묵적, 통상적인 규칙
