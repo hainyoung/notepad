@@ -20,3 +20,113 @@ graph
 서로 룰을 잘 지키자
 
 
+오늘 키워드 정리
+
+m24_eval1.py
+
+boston data 준비
+xgb 모델 구성
+
+model.fit(x_train, y_train, verbose = True, eval_metric = "rmse",
+		      eval_set[(x_train, y_train), (x_test, y_test)])
+
+results = model.evals_result()
+print(results)
+
+# 머신러닝에서도 딥러닝에서처럼 Fit 과정을 볼 수 있다
+(x_train, y_train) : validation_0
+(x_test, y_test) : validation_1
+
+# 딥러닝에서처럼 verbose로 훈련 과정 보여달라고 한다
+# 훈련 과정 평가 지표도 설정 가능 eval_metric으로
+# eval_metric 종류
+# logloss
+# 회귀 : rmse, mae
+# 분류 : error(acc와 반대개념), auc(acc의 친구)
+
+# 그런데 딥러닝에서 사용하던 epoch는?
+# xgb의 파라미터인 n_estimators가 epoch와 동일한 역할이라고 보면 된다
+# 나무의 갯수 = 훈련의 횟수
+
+m26_earlyStopping.py
+# 머신러닝에서도 물론 earlyStopping을 사용할 수 있다
+# fit 과정에 early_stopping_rounds 라는 옵션을 설정하면 된다
+# 참고로 val[0] 즉, training set에서 rmse(metrics)가 감소하는 추세(지표가 더 좋아지는)더라도
+# val[1]에서 나아지는 게 없다면 early stopping 이 일어난다
+# train set보다 test set이 더 중요
+# 딥러닝으로 비교해본다면 val_loss, val_acc에 더 주의를 기울여야 한다는 그런 느낌
+# 과적합 방지를 위한 것으로 보인다
+
+m28_graph.py
+
+# eval_metric에 리스트 []를 사용하면 하나 이상의 지표를 넣을 수 있다
+# eval_metric["logloss", "rmse"]
+
+# 그래프로 시각화
+# import matplotlib.pyplot as plt (from 없이 바로 불러오기 가능 : 파이썬에서 제공)
+
+epochs = len(result['validation_0']['logloss])
+-> result의 ['validation_0']['logloss']의 길이(갯수), 이는 곧 훈련 횟수를 의미
+
+x_aixs = range(0, epochs) # X축 설정
+
+fig, ax = plt.subplots() # 예전에 사용했던 subplot과 다름 -s가 붙음 -> 사용법 알아봐야 함
+ax.plot(x_aixs, results['validation_0']['logloss'], label = 'Train')
+ax.plot(x_axis, results['validation_0']['logloss'], label = 'Test')
+
+# X 축 따라 logloss(trainset), logloss(testset) 두 개의 그래프가 나타남
+
+ax.legend()
+plt.ylabel('Log Loss')
+plt.title('XGBoost Log Loss')
+
+
+m30_time.py
+
+import time
+start = time.time() # 현재 시각을 알 수 있도록 해 주는 time method
+print(start)
+
+end = time.time()
+print(end-start) # 어떤 프로그램이 작동한 총 시간을 알 수 있음
+
+
+m_31, 32, 33 (pickle, joblib, save_model) # 모두 머신러닝 모델 저장하는 방법들
+
+
+1. pickle
+import pickle
+
+# 저장하기
+pickle.dump(model, open("./파일경로/파일명.dat", "wb"))
+# wb = write binary / dat은 확장자명으로 절대적인 것은 아니지만 약속이라 보면 됨
+
+# 불러오기
+model = pickle.load(open"./파일경로/파일명.dat", "rb"))
+# rb = read binary
+
+2. joblib
+import joblib
+
+# 저장하기
+joblib.dump(model, "./파일경로/파일명.dat")
+
+# 불러오기
+model = joblib.load("./파일경로/파일명.dat")
+
+3. model_save
+# 저장하기
+model.save_model("./파일경로/파일명.dat")
+
+model2 = XGBClassifier()
+model2.load_model("./파일경로/파일명.dat")
+
+
+
+
+
+
+
+
+
+
