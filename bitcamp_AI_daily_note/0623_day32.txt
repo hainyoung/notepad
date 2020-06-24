@@ -54,3 +54,46 @@ def outliers(data_out):
         out = np.where((data > upper_bound) | (data < lower_bound))
         outliers.append(out)
     return outliers
+
+===================================================
+
+dacon은 너무 무리다
+일단 선생님이 아예 초반 데이터 불러와서 robust를 해보라고 하셔서 하는 중
+
+scaler를 사용하면 padnas 형태였던 데이터가 numpy로 자동 바뀜
+
+데이터 결측치 처리하는 interpolate(보간법), fillna method를 사용해야하는데
+이것들은 모두 pandas에서 제공하는 것들이다
+따라서 robust scaler를 써 주고 다시 pandas 형태로 바꿔주고
+결측치 처리를 실행했다
+
+# numpy 형태의 data를 pandas 형태로 바꾸는 방법
+import pandas as pd
+x = pd.DataFrame(x)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
