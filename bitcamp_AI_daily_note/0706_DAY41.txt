@@ -1,0 +1,17 @@
+2020.07.06  day 41
+
+지난주 review
+
+activation도 gridsearch, randomizedsearch 에 파라미터로 넣을 수 있다
+activation 도 import 해서 쓸 수 있다
+(예전에 레이어에서 쓰는 방법만 있는 것이 아니다)
+
+optimizer 친구들 우르르
+평타 adam 주로 써 왔다
+(여기서 m : momentum) -> 찾아볼 사람 알아서 공부
+
+optimizer 에서 learning_rate 중요!
+
+
+################# 오전 수업
+embedding!
