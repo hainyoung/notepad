@@ -1,0 +1,125 @@
+20200707 day42
+
+tensorflow 1.xx 대 설치하기 앞서
+
+tf 114 환경을 새로 만듦
+파이썬 3.6.5 아나콘다 베이스로 환경을 설정해주고
+일단 이것 설치하고  tensorflow 1.xx version 설치해준다
+
+1. cmd  창에
+conda create -n tf114 python=3.6.5 anaconda
+명령어 입력
+tf114 : 새로운 환경 이름, 마음대로 지어도 되지만 수업 중에 진행되는 것은 모두 통일시킴
+
+모두 설치되면
+conda activate tf114
+명령어 입력하면
+
+(tf114) C:\Users\bitcamp> 
+이 환경에서 작업하게 된다
+
+conda deactivate tf114
+명령어 입력하면
+다시 기존환경 
+C:\Users\bitcamp> 
+
+activate 상태에서 python 입력하면 3.6.5버전이 나옴
+
+#####################################
+activate base
+입력 하면
+(base) C:\Users\bitcamp
+(base) C:\Users\bitcamp>conda.bat activate base
+
+visual studio code에 
+환경 선택 부분에 python 3.6.5 version의 우리가 만든  tf114 환경을 선택할 수 있음
+
+# Tensorflow ==1.14 설치하기
+
+activate tf114
+
+# 중요! tf114 환경에서 모든 것을 진행
+
+pip install tensorflow==1.14
+
+-> wrapt error 발생
+
+python -m pip install --upgrade pip
+
+pip install tensorflow==1.14
+
+-> 여전히 wrapt error 발생
+
+
+conda remove wrapt
+
+pip install tensorflow==1.14
+
+python
+
+import tensorflow as tf
+
+-> numpy 관련 error 발생
+
+pip uninstall numpy
+
+(numpy 한 번 삭제하고 재설치)
+
+pip install numpy
+
+python
+
+파이썬 실행 후
+
+import tensorflow as tf
+
+tesorflow import 한 후
+
+pirnt(tf.__version__)
+
+tensorflow version 확인하면
+
+1.14.0 
+으로 출력된다
+
+error  처럼 보이는 warning 메세지들이 나오는데
+일단 실행은 된다
+
+warning 메세지 해결방법
+
+numpy를 1.16.4 버전으로 설치
+
+pip uninstall numpy
+
+# 먼저 깔린 버전은 삭제한 후 새로운 버전 설치!
+
+pip install num1.16.4
+
+############
+pip list 를 볼 때
+python 환경에서 하는 게 아니라
+cmd 가장 기본 창에서 해야 함
+그냥 ctrl+Z 키로 나가서 하면 된다
+
+
+
+################################################
+tensorflow1.14 ver 들어감
+사칙연산부터 막힌다?
+
+<KEYWORD>
+sess.run
+Session
+constant
+placehlder
+
+
+
+#################################################
+프로젝트 주의사항
+
+모든 팀원이 곧 팀장
+모든 질문에 답할 수 있어야 한다
+
+사용한 logic에 대해서 설명할 수 있어야 한다
+
