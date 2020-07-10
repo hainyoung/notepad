@@ -1,0 +1,17 @@
+2020.07.10 DAY_45
+
+# 오전 수업
+# 어제 과제 
+# tensorflow mnist -> batch_size 적용, for문 사용
+# 잘라주는 것(start, end 변수명 사용)
+
+# mnist -> tensorflow CNN 모델 구성
+# padding same적용시, valid 적용시 어떻게 달라지는지 파악
+# strides 개념
+
+# 주말 과제 : cifar10 -> tensorflow CNN 모델 구성
+
+
+
+
+# 정리 후,  dacon!
