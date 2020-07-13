@@ -1,0 +1,31 @@
+20200713 day 46
+
+Tensorflow 마지막 시간
+RNN(LSTM) model
+
+##########오후수업 : 플라스크
+cmd 창에 
+
+ping naver.coom
+
+Ping naver.com [210.89.160.88] -> naver 웹 서버의 IP
+
+웹서버 아이피를 주소창에 치면 그대로 네이버가 나온다
+
+ping -t keras.co.kr
+
+117.52.91.252 -> 고정 IP 가 아니라서 페이지가 뜨지 않음
+# gabia : 웹호스팅 사이트의 배너가 뜸
+
+ipconfig
+192.168.0.1 -> 내 IP
+
+
+
+#############
+pip install flask
+
+
+
+
+117.52.91.252]
