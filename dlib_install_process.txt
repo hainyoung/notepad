@@ -1,0 +1,46 @@
+dlib 설치 과정
+
+# 1.
+그냥  command 창에 pip install dlib
+
+# 2.
+activate base
+conda install -c conda-forge dlib
+
+-> 실패
+
+# 3. 
+conda update conda 
+후에
+
+activate base
+conda install -c conda-forge dlib
+
+################################ 이 메세지 계속 뜸
+Solving environment: failed with initial frozen solve. Retrying with flexible solve.
+Solving environment: failed with repodata from current_repodata.json, will retry with next repodata source.
+
+Solving environment: failed with initial frozen solve. Retrying with flexible solve.
+
+
+
+
+Package gmpy2 conflicts for:
+mpmath -> gmpy2
+sympy -> mpmath[version='>=0.19'] -> gmpy2The following specifications were found to be incompatible with your CUDA driver:
+
+  - feature:/win-64::__cuda==10.2=0
+  - feature:|@/win-64::__cuda==10.2=0
+
+Your installed CUDA driver is: 10.2
+
+
+
+# 4차 시도
+conda update --all
+
+후에
+conda install -c conda-forge dlib
+
+######################### 성공!
+

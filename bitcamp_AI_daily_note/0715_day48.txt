@@ -1,0 +1,25 @@
+2020.07.15 day48
+
+database sqlite
+keyword : 'where'
+
+select * from general where name = '왕건'
+
+name이 왕건인 테이블을 보여 준다
+
+#####################################
+jango tutorial
+
+pip install django
+
+d:
+cd study
+
+# 작업공간으로 들어간다
+
+django-admin startproject mysite(프로젝트명)
+# 아무것도 안 뜸(정상)
+
+# visual studio code 들어감
+# mysite 폴더 생성된 것 확인(하위에 또 mysite 폴더가 있음, 웹을 만들어주는 파일들이 자동생성되어있음)
+# study 하단 폴더 mysite -> django 이름 변경
