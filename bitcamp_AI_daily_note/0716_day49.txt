@@ -1,0 +1,55 @@
+2020.07.16
+
+https://reyrei.tistory.com/16 참고
+
+환경설정(by.김기태)
+
+conda create -n 이름 python=3.6
+가상환경 설치
+activate 이름
+
+pip install tensorflow-gpu==1.15
+pip install scipy numpy opencv-python
+pip install cython
+
+https://visualstudio.microsoft.com/ko/visual-cpp-build-tools/
+- visual build 설치 ==> c++ 설치 (설치시 필요)
+
+ - GitHub : https://github.com/thtrieu/darkflow
+darkflow 통째로 다운로드
+
+cmd창 darkflow 폴더로 진입
+cd 경로/darkflow
+
+
+python setup.py build_ext --inplace
+
+가중치 파일 다운로드
+  - Darknet 사이트에서 제공되는 YOLOv2 608×608 weights file을 다운받는다.
+  - Darknet : https://pjreddie.com/darknet/yolo/
+
+받은 가중치 파일은 darkflow 내부에 bin이라는 폴더를 생성하여 넣어줌
+# 가중치 파일 드라이브 공유해놓으셨음!
+
+
+실행방법
+
+python flow --model cfg/yolo.cfg --load bin/yolov2.weights --demo videofile.mp4 --gpu 1.0 --saveVideo
+
+--model     사용할 모델  cfg
+--load      사용할 가중치
+--demo       동영상 넣기 (동영상 위치는 darkflow폴더 안)
+--gpu 1.0         gpu 100퍼사용
+
+################# 동영상은 darkflow 안에 위치해두고 동영상 이름을 demo 뒤에 적으면됨
+# 비디오파일은 bin의 상위 폴더인 darkflow 폴더 내에 있으면 됩니다.
+# bin에는 가중치 파일만 들어있습니다.
+
+
+# 준비된 데이터셋 수집
+# 환경설정
+# yolo / open pose 
+
+
+# 개인적으로
+# 데이터셋 일부 영상 vsc에서 capture 테스트 해 봄

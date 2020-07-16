@@ -23,3 +23,69 @@ django-admin startproject mysite(프로젝트명)
 # visual studio code 들어감
 # mysite 폴더 생성된 것 확인(하위에 또 mysite 폴더가 있음, 웹을 만들어주는 파일들이 자동생성되어있음)
 # study 하단 폴더 mysite -> django 이름 변경
+
+# cmd 창에서
+cd django
+python manage.py startapp polls
+
+# polls 폴더 생성됨
+
+
+######### local host 127.0.0.1
+
+django - mysite - settings.py 에서
+
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost'] 입력
+
+INSTALLED_APPS에
+    'polls.apps.PollsConfig', 추가(comma 꼭 있어야 함)
+
+TIME_ZONE = 'Asia/Seoul' 수정 (원래 UTC)
+
+
+# cmd 창에서
+(위치 : django)
+python manage.py migrate
+
+-> jango setting 완료ㅎ
+
+# cmd 창에서
+python manage.py runserver # 장고 서버를 구동하겠다! 127.0.0.1:800 출력됨
+
+장고 디폴트 : 8000
+
+
+D:\Study\django>python manage.py createsuperuser
+
+# username 쓰라는 문구 출력됨
+
+user id : bit
+password : 1234
+
+python manage.py runserver
+
+127.0.0.1:8000/admin
+들어가면 로그인 창이 뜬다 -> bit / 1234로 로그인
+
+
+vsc에서 models.py에 소스 작성 ( 클래스를 두 개 만듦, Question, Choice)
+
+admin.py에서 소스 작성
+
+모두 저장하고
+
+# cmd 창에서
+python manage.py makemigrations
+
+-> Create model Question
+-> Create model Choice 라고 뜸
+
+python manage.py migrate
+
+-> ... OK
+
+python mange.py runserver
+
+
+
+
