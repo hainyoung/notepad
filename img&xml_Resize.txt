@@ -1,0 +1,19 @@
+이미지 xml 리사이즈 동일 적용 방법
+
+stack overflow 참고
+
+질문)
+How to resize images and appropriate xml files accordingly?
+
+I am trying to apply object detection model to dataset that includes about 180 images and same number of xml files with bounding boxes coordinates for each image. 
+The problem is that all the images are of different size, but before putting them into the model they all should be of same size. 
+If I just resize images all coordinates of bounding boxes will become incorrect so they should be updated too.
+
+One solution is to resize images and them manually update each xml file, but would be good to have some other solution.
+
+답변)
+To resize your bounding box coordinates, you can use the following logic: 
+If your original image dimensions are (width_orig,height_orig),
+your resized image dimensions are (width_new,height_new) and your initial bounding box coordinates are x_min,y_min,x_max,y_max,
+your new bounding box coordinates will be x_min*x_scale,y_min*y_scale,x_max*x_scale,y_max*y_scale where x_scale = width_new/width_orig y_scale = height_new/height_orig 
+Hopefully, if you finally need your annotations in csv format, you can use this xml_to_csv converter to convert your xml files to csv and then read and modify the rows in csv file appropriately.

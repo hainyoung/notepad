@@ -1,0 +1,15 @@
+yolov3-test
+
+첫번째 테스트 ( 데이터 kick, punch, push 각 200개씩 총 600개)
+오후 14 : 12 시작
+
+batch = 64
+subdivisions = 64
+
+width, height = 608
+
+lr = 0.001
+max_bathces = 6200
+steps = 4800, 5400
+
+yolo의 filter, classes 각 24, 3으로 변경

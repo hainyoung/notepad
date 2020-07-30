@@ -1,0 +1,12 @@
+mydata 폴더 내에
+
+watcher폴더(img, annotations)
+
+wathcer.data(coco.data 복붙해서 내용 수정)
+
+watcher.names(cocol.names 복붙해서 내용 수정)
+
+yolov3-my(filters, classes 수정)
+
+학습 명령어
+darknet detector train mydata/watcher.data mydata/yolov3-my.cfg

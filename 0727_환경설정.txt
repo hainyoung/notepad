@@ -1,0 +1,251 @@
+<cuda를 사용하여 opencv dnn 실행>
+
+opencv cuda
+
+nvidia 그래픽카드 드라이버 최신 업데이트
+visual studio 2015
+
+cuda toolkit 10.0
+cudnn 7.6.5 ( for cuda 10.01)
+
+openvino
+intel에서 만든 딥러닝 가속화 라이브러리
+opencv와도 잘 맞음
+opencv에서 openvino 라이브러리 이용하면
+쿠다를 사용하지 않는 환경에서
+opencv dnn 모델을 좀 더 빠르게 동작시킬 수 있음
+
+쿠다 사용가능하면 굳이 사용 안 해도 상관은 없음
+코드 작성시 선택사항이다
+
+openvino
+사이트 - choose& download - register
+-> 다운로드 가능 사이트로 이동
+시리얼 넘버  :  CZL3-XCG66M48
+2019 R3.1 version 선택(유튜브와 동일하게)
+
+별 다를 것 없이 next로 진행
+강의에서는 cmake, python  설치하라는
+메세지 발생 - 잠시 취소하고 설치 순서 바꿈
+- 난 안 뜸
+
+# 1. cuda toolkit 설치 (10.01)
+# 2. cudnn 설치 (7.6.2)
+# 3. cmake 설치(3.16.2)
+# 4. python 설치(3.7.6) - Tensorflow-gpu 설치
+# 5. OpenVINO 설치(2019_R3.1)
+# 6. OpenCV 4.2.0 소스 코드 다운로드(main & extra)
+# 7. Cmake 설정 - > opencv.sln 파일 생성
+# 8. Visual Studio 2017에서 빌드
+
+cmake 
+오픈소스 다운받아서
+비쥬얼스튜디오나 리눅스에서
+빌드하기 위해 필요한 솔루션 파일 또는 메이크 파일을
+생성해주는 유틸리티!
+
+# python  설치
+1. 그냥 파이썬만(유튭)
+2. 아나콘다 사용(현재 학원PC)
+파이썬 최신 3.8.1
+텐서플로랑 궁합이 좀 맞아야하는데
+아직 3.8 ver 아직 지원 잘 안 됨
+그래서 3.7.6으로 설치
+
+
+# 4단계
+https://github.com/opencv/opencv -> 주소창 입력
+-> 최신버전 소스코드인데 이걸 다운 받지 말고
+
+아래로 이동
+https://github.com/opencv/opencv/releases
+OpenCV4.2.0 태그 된 곳으로 가면
+Assets 클릭 -> Source Code zip 파일 다운로드
+-> OpenCV 메인 모듈 소스 코드
+
+다운 완료 되면
+
+https://github.com/opencv/opencv_contrib/releases 링크이동
+4.2.0 zip 파일 다운로드
+-> OpenCV extra 모듈 소스 코드
+
+# C드라이브 - opencv 새폴더 생성
+# 다운 받은 opencv압축파일 2가지 C:\opencv 폴더에 복붙
+
+# opencv 폴더아래에 build 새 폴더 생성
+# opencv 빌드를 위한 솔루션 파일과 프로젝트 파일들 만드는 작업 진행
+
+how? -> cmake 이용
+cmake 실행
+
+1. where is the source code : opencv4-2-0 폴더 지정
+
+2. where to build the binaries : build 폴더 지정
+
+3. 아래에 configure 클릭 - vs15 2017 선택
+
+4. optional platform : x64(64비트 버전으로 빌드 실행할 것)
+
+5. Optional toolset to use : 비워두면 됨
+
+6. Use default native compilers 클릭
+
+7. Finnish 
+
+-> cmake가  opencv4.2.0 폴더에 있는
+cmakelist.txt 파일을 분석해서
+필요한 파일들에 체크를 하거나 인터넷을 통해 다운받는 작업을 진행해줌
+# 꼭 인터넷에 연결되어있어야 한다
+# opencv-4.2.0 폴더에 .cache 폴더에 필요한 파일들이 다운받아짐
+
+8. 작업이 끝나면 빨간색과 함께 뭔가 나열됨
+
+9. build_examples 체크 해주기(opencv에서 제공하는 예제 프로그램 같이 빌드됨)
+
+10. build_opencv_world 도 체크 (하나의 통합모드)
+
+11. Search 창에 extra 검색 -> opencv_extra_modeules_path 나옴
+-> value에서 path를 지정하는데, opencv_contrib_4.2.0폴더 내 modules 폴더로 지정
+
+12. Search 창에 test 검색 -> 4가지 모두 체크 해제
+(build_perf_tests, build_tests, build_opencv_python_tests, install_tests)
+
+13. Search 창에 cuda 검색 -> with_cuda , opencv_dnn_cuda 체크 표시
+
+14. with_opengl 체크표시
+
+15. inf search -> with_inf_engine 체크표시
+OpenVINO 사용을 위해 체크표시한다
+
+16. configure 실행
+
+######## ERROR 발생
+Error in configuration process, project files may be invalid
+
+>>>>> unsupported architectures from CUDA_ARCH_BIN option.
+-> arch로 검색 -> cuda_arch_bin
+# architecture 숫자를 지정해줘야하는데.. 여러 개가 지정되어 있다
+
+# 구글로 검색해보자
+wiki cuda -> 위키 영문판 페이지로 이동
+내려가보면 표가 있는데
+Compute capability (version) 여기 확인
+현재 그래픽카드와 호환되는 것을 찾아야함
+
+학원PC : GeForce RTX 2080 임
+(확인방법 : 시스템정보 - 구성요소 - 디스플레이 - NVDIA GeForce RTX200800)
+RTX2080은 compute capability version이 7.5임
+
+17. cmake에서 cuda_arch_bin에 7.5만 남겨둠
+18. 다시 configure 실행
+
+19. inf 검색 -> inferenceEngine_DIR이 제대로 설정 안 되어 있음
+# 나는 inferenceengine_dir 자체가 없었음
+# with_inf_engine이 체크가 안 되어있길래
+# with_inf_engine 체크하고 configure  하니까 ~dir 생김
+
+20. inferenceEngine_DIR에서 폴더 지정
+-> C드라이브 - Program Files(x86) - IntelSWTools - openvino -
+inference_engine - share 
+
+21. Configure 실행
+
+22. cuda, inf 한 번 확인후 Configure 실행
+
+23. Generate 실행 -> opencv lsn 파일 생성 작업 단계
+
+24. opencv - build 폴더 가면 opencv lsn 파일이 있음을 확인
+
+25. 파일 바로 열어줘도 되고, cmake에서 openproject 사용해서 열어도 됨
+
+# 솔루션 빌드
+# 창 뜨면 -> 다시 로드
+
+# 실패1 : 파이썬 관련 -> 무시하면 된다
+
+26. 솔루션 탐색기에서 CMakeTargets 아래 INSTLL 부분만 따로 빌드 실행
+
+# python37_d.lib 파일을 열 수 없습니다 : 오류 목록에 나옴
+https://kiya.tistory.com/2 참고해서 1번 방법으로 일단 수정하고
+출력에는 그냥 빌드 성공이 되어서 오류 목록 무시하고 다음 단계 진행
+
+27. debug에서 release 모드로 변경 후, 솔루션 빌드 진행
+
+28. release 모드에서 INSTALL 파일만 따로 빌드 다시 한 번 진행
+
+### visual studio, cmaker 창 닫아도 됨
+
+29. opencv - build - lib - python3 - Release - cv2.cp37-win_amd64.pyd 
+파일이 확인됨 -> 복사해서 python 아래의 lib - site-packages에 붙여넣기
+# 우리는 아나콘다를 사용해서 파이썬을 깔았음
+# 따라서 위치는
+
+# C드라이브 - 사용자 - bitcamp - anaconda3 - lib - site-packeages
+# 여기에 복붙
+
+#  cv2.cp37-win_amd64.pyd 이 패키지를 파이썬에서 사용가능해진다
+#  cv2.cp37-win_amd64.pyd 이게 실행이 되기 위해서는...
+# opencv - build - install - x64 - vc15 - bin 내에 있는 .dll파일들의 위치를
+# 환경변수 path에 추가를 해줘야한다
+
+30. 시스템 속성 - 환경변수 - 사용자 변수 새로만들기
+변수이름 : OPENCV_DIR
+디렉토리 찾아보기 : opencv - build - install 폴더로 지정
+
+31. 사용자 변수에서 PATH 클릭 , 새로운 PATH 추가
+%OPENCV_DIR%\x64\vc15\bin -> 추가
+
+
+###########################
+cmd 창 - python 실행 - import cv2
+
+# 에러 발생되면 안 되는데 발생함.... "지정된 모듈을 찾을 수 없습니다."
+# 뭐가 문제가 있는지 체크
+
+# ctrl+Z : 일단 빠져나와서
+
+# echo %PATH% 입력 - > 문제 없음
+
+# opencv_version 입력
+# 시스템 오류 
+inference_engine.dll 이 없어 코드 실행을 진행할 수 없습니다
+프로그램을 다시 설치하면 이 문제가 해결될 수 있습니다
+
+# inference_engine.dll이 안 잡히는 것 같음
+# 위 파일 위치를 찾아서 환경변수에 PATH로 추가
+# 현재위치 : C:\Program Files (x86)\IntelSWTools\openvino\inference_engine\bin\intel64\Release
+
+# cmd창 새로열기
+# python - import cv2 : 에러 발생하지 않고 실행됨
+# cv2.__version__ : '4.2.0' 버전 확인 완료
+# exit() : 종료
+
+########################################## 빌드 완료
+
+
+< YOLO darknet 설치>
+https://mickael-k.tistory.com/15 참고
+darknet 압축파일 받아서 블로그 따라서 실행
+
+visual studio 2019 2017 몇 번 시도하다가
+2015 설치하고 업데이트 후에 빌드하니까 성공함
+
+
+##########################################
+darknet 실행시키는 과정에서 opencv가 안 땡겨지는 문제 발생
+
+darknet.sln 파일에서 속성 다시 설정
+링커 - 일반 - 추가 라이브러리 디렉터리 : C:\opencv\build\install\x64\vc15\lib(release, debug)
+C/C++ - 일반 - 추가 포함 디렉터리 : C:\opencv\build\install\include(release, debug) 
+
+다시 빌드(release모드)
+
+
+
+
+
+
+
+
+
+
