@@ -10,3 +10,5 @@ yolov3-my(filters, classes 수정)
 
 학습 명령어
 darknet detector train mydata/watcher.data mydata/yolov3-my.cfg
+
+darknet detector train mydata/test.data mydata/yolov3-test.cfg

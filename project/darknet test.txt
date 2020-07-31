@@ -13,3 +13,18 @@ max_bathces = 6200
 steps = 4800, 5400
 
 yolo의 filter, classes 각 24, 3으로 변경
+
+backup 폴더에 weights 갱신
+yolov3-test_last.weights
+14:28
+14:43
+15:00
+15:17
+15:32
+15:50
+16:08
+--미확인--
+16:42
+--미확인--
+17:48
+yolov3-test_1000.weights 16:49
