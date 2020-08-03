@@ -100,9 +100,24 @@ SELECT * FROM topic WHERE author = 'egoing' ORDER BY id DESC;
 또는 빅데이터, 인공지능으로 분석할 수 있다
 
 
+# 3-1 MySQL 설치(windows)
+검색창에 bitnami wamp 
+첫 번째 링크로 이동
+wamp는 윈도우에서 아파치, 마이sql php 동시에 설치해주는 프로그램
+이걸 통해서 mysql 쉽게 설치 가능
 
+설치 경로 : C:\Bitnami\wampstack-7.4.8-0
 
+windows용으로 다운로드받고 실행
+next - next
 
+mysql : 다중 사용자 시스템, 여러 사용자가 들어갈 수 있다
+첫 번째 기본 사용자 : root
+root 사용자의 비밀번호를 설정한다
+
+실습을 위해서 쉽게 '111111'로 비밀번호 설정
+
+Launch wampstack in the cloud with Bitnami 박스 체크 해제
 
 
 

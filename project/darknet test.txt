@@ -1,3 +1,8 @@
+darknet.exe detector demo mydata/test.data mydata/yolov3-test.cfg mydata/backup/yolov3-test_final.weights -i 0 data/test/testvideo.mp4
+
+
+darknet.exe detector map mydata/test.data mydata/yolov3-test.cfg mydata/backup yolov3-test_2000.weights
+
 yolov3-test
 
 첫번째 테스트 ( 데이터 kick, punch, push 각 200개씩 총 600개)
