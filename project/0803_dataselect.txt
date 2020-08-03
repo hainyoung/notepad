@@ -24,5 +24,10 @@ outsidedoor02
 14-4 : kicking이 없음
 16 : night(3명, 술집거리)
 
-113 118 night spring kick
 
+test data
+normal inside 100
+kicking outside  32
+
+실외 kick 더이상 안 나옴,,
+실외9 영상 다운 받아서 하기로..?
