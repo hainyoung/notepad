@@ -23,3 +23,6 @@ outsidedoor02
 13 : day(3명, 공사장)
 14-4 : kicking이 없음
 16 : night(3명, 술집거리)
+
+113 118 night spring kick
+
