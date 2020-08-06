@@ -1,0 +1,109 @@
+# 생활코딩
+# DATABASE2 - MySQL
+
+# 9강 CRUD
+create 생성
+read 읽기
+update 수정
+delete 삭제
+
+database라면 반드시 가진 기능 : creat, read
+updata, delete는 무조건 필수 기능은 아니다
+ex) 회계 영역, 거래 내역과 같은 것들을 update, delete 있을 수 없다
+
+creat, read가 무엇인지 따져보는 것이 반은 한 것!
+
+# 10강
+구글링
+mysql create row
+
+공식 매뉴얼
+INSERT Syntax
+
+만만한 곳 ㅋㅋ
+INSERT INTO table_name
+VALUES (value1, value2, value3, ...); 
+
+하나의 행 생성
+INSERT INTO topic (title,description,created,author,profile)(공백)
+VALUES('MySQL','MySQL is ...',NOW(),'egoing','developer');
+
+# NOW() 는 함수로, 현재 시각 자동 기록
+
+# 11강
+# read를 해 보자
+how to read row in mysql 구글링!
+
+현재 실습으로 사용하고 있는 topic table
++----+------------+-------------------+---------------------+--------+---------------------------+
+| id | title      | description       | created             | author | profile                   |
++----+------------+-------------------+---------------------+--------+---------------------------+
+|  1 | MySQL      | MySQL is ...      | 2020-08-05 23:25:34 | egoing | developer                 |
+|  2 | ORACLE     | ORACLE is ...     | 2020-08-05 23:38:22 | egoing | developer                 |
+|  3 | SQL Server | SQL Server is ... | 2020-08-05 23:40:07 | duru   | data administrator        |
+|  4 | PostgreSQL | PostgreSQL is ... | 2020-08-05 23:41:25 | taeho  | data scientist, developer |
+|  5 | MongoDB    | MongoDB is ...    | 2020-08-05 23:42:23 | egoing | developer                 |
++----+------------+-------------------+---------------------+--------+---------------------------+
+
+# SELECT문 문법
+# 모든 데이터 출력
+SELECT * FROM tablename;
+
+# 일부분만 출력
+SELECT col1, co2, ... FROM tablename;
+
+mysql select syntax 로 구글링
+select 관련 문법들을 알 수 있다
+
+# WHERE은 FROM 앞에 온다
+# 예를 들어 author가 'egoing'인 데이터들만 출력하고 싶을 때 사용
+# 스프레드시트의 '필터'와 같은 역할
+
+SELECT id,title,created,author FROM topic WHERE author='egoing';
+
+# 스프레드시트의 '정렬'과 같은 효과를 가진 문법은?
+# ORDER BY 
+
+SELECT id,title,created,author FROM topic WHERE author='egoing' ORDER BY id DESC;
+# DESC : 내림차순(내려갈수록 작아짐)
+# ASC : 오름차순(내려갈수록 커짐)
+
+# IF, 테이블의 행의 수가 10만개인 엄청난 양의 데이터가 있다면
+# SELECT * FROM 으로 모든 데이터 가져오면 컴퓨터 멈춤
+# 우리는 제약을 걸어줄 수 있다
+# LIMIT (임의의숫자)를 통해서!
+
+SELECT id,title,created,author FROM topic WHERE author='egoing' ORDER BY id DESC LIMIT 2;
+이렇게 제약을 걸면 SELECT 문을 만족하는 데이터의 수가 몇 개든 2개만 출력된다
+
+# SELECT는 수련이 필요하다!
+# 기본은 쉬우나 깊게 들어가면 심오하고 복잡,,,
+# 뭐든 간단한 것에서부터 출발하는 것이니까
+# 지금까지 한 것 == 혁명적인 이야기들이었다
+
+# 12강
+# UPDATE
+sql update mysql 구글링으로 방법 알아보기
+
+# UPDATE tablename SET col_1='value_1',...,col_n='value_n' WHERE id=숫자;
+# WHERE 설정 안 하면 모두 변경 되어버리기 때문에
+# 꼭 바꾸고 싶은 부분을 지정해줘야한다
+UPDATE topic SET description='Oracle is ...', title='Oracle' WHERE id=2;
+
+
+# 13강
+# DELETE
+
+sql delete in mysql 구글링!
+
+# WHERE 안 쓰면 모두 삭제된다!!!!!!!조심 또 조심!!!!!
+DELETE FROM topic WHERE id = 5;
+
+# 14강
+수업의 정상
+본질
+혁신
+
+# 15강
+관계형데이터베이스의 필요성
+
