@@ -1,0 +1,26 @@
+# 
+
+# PROJECT
+프로젝트 진행 상황 정리
+프로젝트 관련 코드, 환경설치, 처음 배운 용어 정리
+
++ 개인 프로젝트 보완이 필요
++ YOUTUBE 미니 프로젝트들 따라해보기
+
+# LECTURE
+STUDY FOLDER REVIEW
+
+# CODING
+백준, 프로그래머스, 코드업 문제 정리 및 복습, 풀기
+
+# JOB
+포트폴리오
+면접질문
+채용현황
+
+
+# DACON
+살펴보기
+
+# GoogleDrive, Notion, Slack, Bookmark, Github 
+정리 및 공부 필요

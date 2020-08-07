@@ -1,0 +1,82 @@
+CFG-Parameters in the [net] section
+
+1.[net] section
+
+# batch
+
+# subdivisions
+
+# width
+
+# height
+
+# channels
+
+# inputs
+
+# max_chart_loss
+
+For training only
+
+* Contrastive loss :
+# contrastive
+
+# unsupervised
+
+* Data augmentation
+# angle
+
+# saturation
+
+# exposure
+
+# hue
+
+# blur
+
+# min_crop
+
+# max_crop
+
+# aspect
+
+# letter_box
+
+# cutmix
+
+# mosaic
+
+# mosaic_bound
+
+# adversarial_lr
+
+# attention
+
+# gaussian_noise
+
+* Optimizer
+
+# momentum
+
+# decay
+
+# learning_rate
+- initial learning rate for training
+- 학습의 초기 학습률
+- '초기'라고 되어 있는 건 설정한 step 지점에서 학습률이 바뀌는 부분이 있기 때문이었나
+- 큰 그림?
+
+# burn_in
+
+# max_bathces
+- the training will be processed for this number of iterations(batches)
+- 최대 반복횟수 지정?
+
+# policy == steps
+
+# steps
+- if policty == steps at these numbers of iterations the learning rate will be multiplied by scales factor
+- step으로 설정해 놓은 지점들에서 초기 학습률에 scale 지정값이 곱해져서
+- 새로운 학습률로 훈련을 진행한다
+
+# scales

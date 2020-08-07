@@ -1,5 +1,7 @@
 yolo.cfg review
 
+# cfg : config
+
 참조 
 # darknet 훈련예시
 https://eehoeskrap.tistory.com/370
