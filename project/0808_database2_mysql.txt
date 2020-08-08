@@ -1,0 +1,214 @@
+# 15. 관계형 데이터 베이스의 필요성
+# 16. 테이블 분리하기
+
+데이터의 중복 == 개선을 할 것이 있다
+
+행이 1억개, 중복되는 것이 1천만 개라고 가정.
+데이터가 중복되는 것들이 여러 가지 문제를 발생시킨다
+용량이 큰 데이터가 천만번 등장한다 == 기술적으로 경제적으로 손해
+천만 개가 등장한다면 그 데이터들의 수정이 필요할 때 == 엄청난 어려움
+
+이 문제를 어떻게 해결할 수 있을까?
+
+중복되는 부분들이 해당하는 부분을 따로 떼 와서 또 다른 table을 생성
+
+수업의 예로 보면
+
+기존 topic table에서 author, profile column을 따로 떼 와서
+author라는 table을 생성한다
+이 때 생성할 때 index를 부여해서 만든다
+
+topic table에서 id, title, description, created, author column을 따로 떼 와서
+새로운 topic table을 생성, author column -> author_id로 변경,
+author table에서 index를 참고하여 author_id column 내용들을 1, 2, 등으로 변경
+author column이 author 이름들 대신 index 값으로 식별되게 한다
+
+# 중복 제거를 위해 여러 테이블을 생성함으로써 얻는 장점들
+# 1
+if, egoing을 한글 이름 '이고잉'으로 변경하려고 할 때,
+기존 topic table에서는 egoing 부분을 모두 '이고잉'으로 하나씩 수정해야 하는데
+
+새로운 autohr, topic table에서는
+author table에서만 egoing을 '이고잉'으로 변경해주면
+고유 인덱스 값이 있기 때문에 topic table에 자동으로 수정사항이 반영된다
+즉, author table에서 한 번만 바꿔주면! 
+  -> 유지보수하기가 훨씬 쉬워짐
+
+# 2
+기존 topic table에 egoing이면서 profile이 developer인 것이 3항목이 있음
+같은 인물인지 아닌지 알 수가 없음
+
+그런데 새로 만든 author table에서 1, egoing, devloper / 4, egoing, developer 로
+내용이 들어있다면 author_id에서 1, 4로 구분이 가능
+두 사람이 다른 사람임을 알 수가 있음
+
+# but, 장점만 있는 것은 아니다 -> "trade off", 장점이 생기면 단점도 생긴다
+
+한 테이블에 모든 내용이 담겨져 있는 것(1) vs 테이블을 분리한 것(2)
+
+(1)의 경우 직관적으로 데이터를 볼 수 있다
+(2) 테이블을 별도로 쪼개고 테이블 참조값만 적어두면,
+그 데이터에 해당되는 별도의 표를 열어서 그 표와 비교해가면서 봐야하는 불편함이 생긴다
+
+그렇다면 우리는 뭘 하고 싶어질까?
+별도의 테이블로 보관함으로써 중복을 발생시키지 않으면서도
+실제로 데이터를 볼 때는 하나의 표로 합쳐진 결과를 보고 싶을 것이다
+
+MYSQL과 함께라면 그것이 가능하다?!
+
+저장은 분산해서, 보여줄 땐 합쳐서!
+
+# 17. JOIN !!!
+
+자, 먼저 우리가 하고 싶은 일을 MYSQL에게 어떻게 전달해야 할까?
+
+mysql아, topic table을 가져와서 author table과 합치는데, topic table의 author_id와
+author table의 id 가 연결되어 있으니, 그 기준으로 합쳐줘!
+
+SELECT * FROM topic LEFT JOIN author ON topic.author_id = author.id;
+
+여기서 ON ~ 이하가 없고 그냥 LEFT JOIN 하면 MYSQL은 도대체 어떻게 합쳐달라는 거야?
+라고 생각하게 되어 ERROR가 발생한다
+
+
+# 그대로 따라 했는데 나는 author_id가 1끼리 제대로 정렬이 안 됨
+# 그래서 ORDER BY author_id를 추가해서 영상과 같이 출력되게 함
+
+필요없는 author_id, id를 제외해서 출력해보자
+
+SELECT topic.id AS topic_id, title, description, created, name, profile FROM topic LEFT JOIN 
+author ON topic.author_id = author.id ORDER BY author_id;
+
+id라는 column이 topic, author table에 모두 있기 때문에 구분하기 위해
+topic.id를 불러오고 그것을 topic_id로 보여달라 == topic.id AS topic_id
+
+그냥 id, title, des~~ 행을 선택하면 error 발생
+id column이 ambiguous 하다는 메세지와 함께..
+따라서 topic의 id임을 알려줘야 한다
+
+
+# 18. 인터넷과 데이터베이스
+우리 수업의 마지막 관문, 인터넷과 데이터베이스의 관계
+정보의 바다라고 할 수 있는 이 인터넷 위에서 데이터베이스가 동작하게 되면
+굉장히 강력한 효과를 낼 수 있다
+mysql은 내부적으로 인터넷을 활용할 수 있도록 고안된 시스템
+
+자연스럽게 넘어갔던 databaser server 에서 server라는 말의 의미를 본격적으로 살펴보자!
+
+데이터베이스를 잠시 떠나서, 인터넷 자체에 대해 이야기해봐야 한다
+질문 : 인터넷을 사용하기 위해서는, 인터넷이 동작하기 위해서는 
+컴퓨터가 최소 몇 대가 필요할까? -> 2대!
+
+1대면 인터넷이 아니다, 3대면 본질적이지 않다
+최소한이면서 최대한인 것이 바로 2대.
+인터넷이라는 것의 의미는 각자 흩어져 있는 컴퓨터들이
+인터넷으로 연결되면서, 컴퓨터들간의 사회가 만들어지는 것이라고 말할 수 있다
+컴퓨터들의 사회 == 컴퓨터가 한 대일때의 한계를 초월하게 되는 것!
+# 혁명적 # 역사적
+두 대의 컴퓨터들 사이에서는 어떤 일이 일어날까?
+한 대의 컴퓨터는 정보를 다른 컴퓨터에게 요청한다
+다른 한 컴퓨터는 그 요청에 응답한다!
+-> 웹이 떠오름
+웹이 동작하기 위해서는, 당연하게 인터넷이 필요하고,
+인터넷 위에서 동작하기 때문에 2대의 컴퓨터가 필요하다
+한 대의 컴퓨터에는 WEB browser가 설치되어 있다
+web browser 에 google.com facebook.com 이런 것들을 입력한다
+wewb browser가 설치된 컴퓨터에 입력한 도메인 네임에 해당하는 
+이 세상의 컴퓨터를 찾아가서 그 주소에 해당되는 컴퓨터가
+요청한 정보를 요청한 컴퓨터에게 빵! 하고 쏴 준다
+
+정보를 요청하는 쪽, 응답하는 쪽으로 나뉘게 된다
+인터넷을 만든 사람들은 이러한 역할 분담을 설명하기 위해서,
+각각의 역할에 해당하는 컴퓨터를 설명하기 위해 쉬운 말을 찾는다
+ 
+자본주의 사회에서 서로 서비스를 요청하는 쪽, 응답하는 쪽이 있다
+요청하는 쪽 : client
+응답하는 쪽 : server
+
+client computer는 server computer에게 정보를 요청하는데,
+이 관계가 웹이라면, 정보를 요청하는 컴퓨터에 설치되어 있는 프로그램은 
+web browser== web client (역사적인 이유로 web browser라고 부를 뿐이다)
+
+응답하는 서버 컴퓨터에 설치되어있는 웹을 위한 프로그램 : web server
+
+client, server ; internet을 이해하기 위한 핵심 열쇠
+
+mysql은 동시에 두 가지 프로그램을 설치한다
+1) database client
+2) database server
+
+2)에는 실제로 데이터가 저장이 되고
+1)을 통해서 데이터베이스 서버에 접속할 수 있다
+
+사실은 우리는 2)를 직접 다룰 수 없다
+반드시 어떠한 형태로건 1)을 사용해야 다룰 수 있다
+
+지금까지 우리가 사용한 
+database client가 무엇이었냐면 : mysql
+mysql이라고 했을 때 실행이 되는 명령어 기반의 프로그램이었다
+
+Welcome to the MYSQL monitor~
+mysql monitor : database client 중의 하나였다
+기본적인 bundle로써 제공하는 것이 mysql monitor 였다
+이것은 명령어를 통해서 데이터베이스서버를 제어하는 프로그램이었다
+
+
+
+공부의 목표 : 이해가 아니라 익숙해지는 것
+익숙해지기 위한 여러 가지 방법 중 하나가 이해와 암기
+  
+# 19 MySQL Client
+
+많은 mysql client들이 있다
+mysql monitor의 장점 : mysql 서버를 설치하면 함께 설치되기 때문에
+mysql 서버가 있는 곳에 mysql monitor가 있다!
+mysql monitor는 gui가 아니고, 명령어를 이용해서 제어하는 명령어 기반의 프로그램이다
+
+반면, mysql workbench와 같은 프로그램은 gui 기반 프로그램이다
+마우스를 가지고 작동할 수 있는 프로그램!
+
+많은 서버 컴퓨터들이 그 컴퓨터의 자원을 최대한 그 일 자체에만 투여하기 위해서
+gui 기능을 제공하지 않는 경우가 굉장히 많다
+그런 경우에는 mysql workbench를 그 서버 컴퓨터 안에서는 실행할 수 없다
+반면 mysql monitor는 명령어기반이므로 사용할 수 있다
+
+단점 
+명령어를 통해서만 제어할 수 있기 때문에 명령어를 기억해야 한다는 단점이 있다
+반면 gui 는 클릭으로 제어 가능하기 때문에 쉽게 느껴진다
+
+명령어기반과 gui 기반은 서로 장/단점이 다르다
+
+mysql client에 어떠한 것들이 있는지 살펴보고
+mysql workbench의 사용법도 알아보자!
+
+mysql client googling
+
+what is the best mysql client for mac os x or windows?
+
+- free clients
+mysqlworkbench
+phpmyadmin 등등
+
+- commercial clients with a free open(부분적 무료)
+
+- commercial clients
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
