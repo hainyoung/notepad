@@ -1,0 +1,7 @@
+# mariadb 계정 생성 테스트
+
+database : MariaDB
+table : pydb
+
+user : inyoung(young717)
+
