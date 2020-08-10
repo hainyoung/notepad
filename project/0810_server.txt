@@ -116,7 +116,32 @@ NAT가 동작하는 방법을 살펴본 것이다
 
 # 4. IP 주소 알아내기
 
+공유기, 라우터의 ip 주소 어떻게 알아내는지
+결과적으로 우리 네트워크가 외부에서는 어떤 ip address로 보여지는가 == public IP address
+를 알아보자
 
+운영체제별로 다르다
+
+윈도우에서는
+제어판 - 네트워크 앤 인터넷 - 네트워크 앤 공유센터
+연결, connection : 이더넷(코드연결) / 와이파이(와이파이연결) - 클릭
+자세히 클릭
+ipv4 default gateway : 라우터의 ip 주소
+
+현재 학원 pc
+ipv4 : 192.168.0.128 - 내 pc ip
+ipv4 gateway : 192.168.0.1 - 라우터 ip
+
+WAN 상에서 라우터의 IP는 어떻게 되는가
+우리 네트워크가 어떤 PUBLIC IP ADDRESS를 갖고 있는가
+
+MY IP 구글링
+또는 ipconfig.kr -> public ip 알 수 있음!(ipconfig는 고성능 컴퓨터 신청 과정에서 알게 됨)
+
+# 참고,,,
+고성능 컴퓨터 신청할 때 처음에 적은 ipv4(cmd창에서 ip 주소 확인)는 사설 ip 대역이라함
+즉, 공유기를 통한 내부 네트워크 ip!
+필요한 것은 public ip였다..
 
 # 생활코딩 HomeServer -7. Dynamic & Static IP address
 
