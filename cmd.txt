@@ -1,0 +1,14 @@
+cmd 창에서
+
+nvida-smi -l 1
+1은 갱신하는 시간(초 단위)
+
+conda env list
+가상환경 리스트 출력
+
+conda install python=3.7.6
+파이썬 버전별 설치
+
+conda search python 
+설치할 수 있는 파이썬 버전이 출력된다
+케라스든 뭐든 다 할 수 있음

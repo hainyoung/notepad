@@ -1,0 +1,25 @@
+Flask vs Django
+
+두 가지를 고민한다면 Flask를 써라
+서비스를 제공하고 싶다면 Django를 써라
+
+for beginner, study == Flask
+for Web service == Django
+
+Flask 설명에는 micro web framewalk라는 용어가 있다
+정말 필요한 것만 제공해준다
+나머지 것들은? pip install로 필요한 extension들을 추가적 설치 가능
+
+어떠한 extension을 install 해야 하는 지를 선택하는 것 == 학습
+
+ex. MongoDB, ORM, Security 등
+
+공부를 하거나 프로토 타입 서버를 만들기 위해서는 flask가 좋다
+
+Django는
+홈페이지의 설명을 보면
+Battery power included가 있음
+jango를 설치하면 모든 게 따라 온다
+서비스는 안전하게 제공 가능하나
+실질적으로 웹서버가 어떻게 동작하는지 배울 방법은 없다
+
