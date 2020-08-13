@@ -1,0 +1,97 @@
+kaggle_03
+
+competition 시작했다
+무엇부터 해야 할까
+
+1. 데이터 분석
+2. 알고리즘 선택
+
+당연히 1이 우선!
+
+머신러닝이란?
+# Pattern Recognition 
+- 모델을 통해 데이터의 패턴을 학습하는 것
+# Make general function(conditions) to obtain goal(minimize loss)
+- 결국 손실을 최소화하고 최적화를 이루는 것
+# Learn statistics(correlations) between feature vs feature / feature vs target
+- 피쳐간의, 그리고 피쳐와 타겟간의 상관관계, 통계를 분석하는 것
+
+Pattern, Correlation이 있어서 AI가 찾았다
+AI가 Pattern, Correlation을 만들어냈다
+닭이 먼저냐, 달걀이 먼저냐
+
+데이터사이언티스트에게 중요한 것은 가장 중요한 것은
+DATA!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Garbage in , Garbage out!!!!!!!!!!!!!!!!!!!!
+
+Your neural network is only as good as the data you feed it.
+
+#############################################
+competition은 team으로 참여하는 것이 좋다
+
+Competiton 실습 과정
+1. 
+Data check - Null data check
+Data check - Outlier check
+
+2. Feature engineering
+- Ratio features : A per B
+- Product feature : A * B
+- Addition feature : A + B
+- Substraction feature : A - B
+이런 식으로 새로운 feature를 만들 수 있다
+
+- New categorical features
+특정 기준을 만족하느냐, 만족하지 않느냐로
+Binary category를 만들 수도 있다
+
+- Aggregation features
+Category와 numerical feature의 조합으로 생성하며
+Category 각 그룹당 mean, median, variance, standard deviation을 
+feature로 사용
+말 그대로 조합이기 때문에 엄청나게 만들어 낼 수 있다
+카테고리별로 grouping, 그룹핑을 해 준다
+그룹이 가지고 있는 여러 통곗값들을 피쳐로 만들어서
+본 데이터에 join, merge 해 주면 된다
+
+
+- Categorical features
+1) one-hot encoding : Category 개수 만큼 column이 늘어난다, 너무 오래 걸림
+2) Label encoding : 자칫 bias ordering 문제가 생길 수 있다
+3) Lightgbm Built-in : 데이터셋이 크니 학습이 빠른 Lightbgm을 쓸 건데,
+마침 카테고리를 처리하는 내장 알고리즘이 있구나, 이거다!
+
+- Fill missing values and infinite values
+
+* Numerical features
+Lightgbm은 missing value를 빼고 tree split을 한 다음,
+missing value를 각 side에 넣어봐서 loss가 줄어드는 쪽으로
+missing value를 분류
+
+3. Feature selection 
+- Use various approaches
+
+4. Model Development 
+- Use LGBM
+빠르고 성능도 괜찮음
+RandomForest는 느려서 잘 안 쓴다
+
+5. Training Strategy - Ensemble is always answer
+추상적이지만 강력한 방법 : Ensemble
+Sum of Week learner is stronger than One strong learner
+
+
+그냥 막 summit 하지마라
+하나를 summit 하면 내가 짠 것과 결과의 상관관계 같은 것을 봐야 한다
+summit 하나하나는 소중하다
+
+
+
+
+
+
+
+
+
+

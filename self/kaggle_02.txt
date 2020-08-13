@@ -1,0 +1,125 @@
+(2018년 기준)
+머신러닝으로 풀 수 있는 대부분의 문제가 담겨 있다
+
+개인적 측면
+# 실력
+- ML certificate
+- Portfolio
+- 경험
+
+# 캐글 자체가 job을 주진 않는다
+# 하지만 캐글을 해서 ML, DL, DS 실력을 엄청 쌓아서
+# 그것이 job을 얻게 한다
+
+# DS = Data Science
+
+ML, DL, DS 잘하는지 객관적 지표 == Kaggle 이라 볼 수 있다
+Kaggle은 수능등급, 학점과 같다고 보면 된다
+
+
+# 정형 데이터를 위한 경험, 실력을 쌓을 수 있다
+
+Porto : 고객이 내년에 자동차 보험금 청구를 할 것인가
+Home Credit : 고객이 앞으로 대출 상환을 할 것인가
+Costa rican : 고객의 소득 수준을 ML로 구분하라
+Elo : 거래 내역 데이터를 가지고, 고객 충성도를 예측하라
+New York taxi : Taxi 탑승 시간을 예측하라
+직방 : 아파트 거래가격을 예측하라
+INFOCARE : 아파트 경매가격 예측하라
+
+ml, dl 이론적 측면은 사실 빨리 공부할 수 있다
+몇 달 동안 빡시게 하면 가능하다?
+개념은 복잡하지만 빨리 익힐 수 있다
+1년, 2년 내내 공부할 것이 아니다
+
+어떻게 쓸 것인가! 이것이 중요하고 힘든 것이다
+머신러닝은 도구이다
+도구는 써야 하는 것이다
+도구를 설계하는 것은 당장 필요한 것이 아니다
+실제 현업에서 잘 쓸 수 있어야 한다
+빨리 공부하고 빨리 캐글을 접해야 한다
+
+캐글을 통해 배울 수 있는 것들
+
+EDA : Exploratory data analysis 데이터 분석
+- Data visualization 데이터 시각화(주로 하는 것, 그림 그리기!)
+* Matplotlib, Seaborn, Plotly
+* Data mining
+* Pandas, numpy
+이러한 것들을 통해, insight를 길러야 한다
+
+Feature Engineering 
+모델은 우리가 넣어준 것만 안다
+그래서 잘 넣어줘야 한다
+그러기 위해 Feature Engineering이 중요하다
+- Time series features
+- Categorical features
+- Numerical features
+- Aggregation features
+- Ratio features
+- Product features
+
+Data Preparation
+데이터를 어떻게 준비할 것인가
+피곤하게 만드는 것 : 데이터의 불균형
+모든 데이터는 불균형하다....
+- Data augmentation(imbalance)
+* Upsampling
+* Downsampling
+* SMOTE
+
+Model Devlopment
+- Sklearn
+* Linear Model
+* Non-linear Model
+* Tree Model
+- Not sklearn
+* XGBoost
+* Lightgbm
+* Catboost
+* Libffm
+
+Model Evaluation
+- Various Metrics
+* Accuracy
+* Precision
+* Recall
+* F1-score
+* Etc
+
+Other Technique
+- Machine learning pipeline
+* My pipeline code
+- Feature management
+
+
+캐글 - 딥러닝
+Tensorflow : 30개 단어를 구분하는 AI를 만들어라
+Quora : 성실한, 불성실한 질문을 구분해내라
+Doodle : 340개의 클래스 별 낙서를 ANN으로 구분하라
+Protein : 28개의 클래스 별 Protein을 ANN으로 구분하라
+Airbus : 바다 위 배를 찍은 위성 사진에서 배의 위치를 찾아내라
+Statoil : 바다 위 빙산과 배를 구분하라
+
+
+파이썬 머신러닝 완벽 가이드 -> 책 추천!
+
+준비해서, 잘해서 competiton 들어간다?
+그냥 들어가서 준비하고 잘 해라
+
+head first!!!!!!!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
