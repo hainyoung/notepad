@@ -1,0 +1,98 @@
+2020년 04월 29일
+
+<프로그램 설치>
+1. Visual Studio Code 설치
+- 확장 아이콘 클릭, python 검색
+- Python, Python for VSCode, Python Extension Pack, Python Extended 설치
+- korea 검색, 한국어 설치
+2. Anaconda 설치
+3. Python 3.7.6 설치
+4. Visual Studio Code 아랫부분 파란색 창 클릭, 3.7.6 64-bit로 설정
+
+5. cmd(command/터미널/도스창)창 띄우고 pip 적으면 설치된 여러 API 확인 가능
+- nympy 확인 후 pip install tensorflow로 적고 tensorflow 설치하기
+- pip install keras 적고 keras 설치하기
+
+* cls 를 적으면 창의 내용이 다 지워짐
+
+
+y = ax + b만 알면 된다.
+
+우리는 x, y 값(**정제된 Data)을 machine에게 준다.
+machine은 주어진 값들을 통해 Learning해서 결과값을 predict한다.
+어떻게?
+정제된 Data를 통해 ***최적의 weight(가중치) 값을 구해서.
+이를 weight optimization 이라고 함.
+
+우리가 하게 될 일의 90%는 data cleaning(데이터 클리닝, 데이터 정제), data preprocessing(데이터 전처리).
+그리고 accuracy(정확도)에 민감해져야 한다.
+
+위의 일차함수가 아닌 이차함수, 삼차함수는 어떻게 정제된 데이터로 만드는가?
+미분을 통해서.
+미분은 machine이 다 알아서 한다.
+
+용어에 익숙해져야 한다.
+- 데이터 data
+- 최적화 optimization
+- 정제된 cleaning
+- 전처리 preprocessing
+- 머신 machine
+- 정확도 accuracy
+
+
+
+뇌의 신경망 -----> 인공 신경망
+- 신경망을 구성하는 하나하나의 요소, 뉴런 = node
+- 계층별로 나눠진 하나하나의 단계 = layer
+- 첫 번째 입력 되는 단계 = input layer
+- 마지막에 출력 되는 단계 = output layer
+- 그 사이에 있는 단계들 = hidden layer
+- layer들의 깊이 = deep
+- deep을 학습시키는 것 = deep learning, 딥러닝
+
+
+
+코드 입력 시 대/소문자 구별이 중요.
+- 대문자는 Class를 나타냄.
+- 소문자는 파일명? 폴더명?
+
+Visual Studio Code 단축키
+- ctrl + F5 : 실행
+- ctral + /(slash) : 주석처리(#), 한 번 더 실행하면 주석 해제
+- shift + delete : 한 line 삭제
+
+
+<keras01_1.py>
+2) import : 가져오겠다
+*sequential : 순차적
+7) from keras.models import Sequential :  케라스 모델을 순차적으로 만들겠다.
+8) from keras.models import Dens : 케라스 모델을 가장 기초적인(일차함수) 모델로 만들겠다.
+
+10) model = Sequential() : Sequential Model을 Model로 하겠다.
+11) input_dim = 1 : input 되는 node는 한 개. 3 : input layer는 다음 3개의 node로 이뤄진 hidden layer로 이어짐.
+12) 4 : 바로 위 hidden layer node 3개에서 이어짐. 3은 2번째 hidden layer의 input layer라고 볼 수 있음.
+17) mse : loss(손실)을 덜 보기 위해 쓴다는 정도만 알고 있으면 됨. 
+     adam : optimize를 위해 사용
+     metircs : accuracy로 보여준다는 정도만 알고 있으면 됨.
+18) fit : 훈련시킨다는 의미. (여기서는 x, y값을 통해서)
+     epochs : 훈련을 얼마나 시킬 것인가?
+     batch_size : 데이터를 몇 개씩 잘라서 훈련 시킬 것인가?
+22) accuracy를 보겠다는 의미.
+ 
+
+<keras01_2.py>
+53) model에 x2값을 넣어서 예측 y값 구하기
+54) predict된(예측된) y값을 출력하라
+
+accuracy를 높이기 위해서?
+1. epochs 횟수 올리기 (훈련을 많이 하는 만큼 정확도가 올라가짐)
+2. node의 갯수 늘리기
+3. layer 갯수 늘리기
+- 2와 3은 임의대로 갯수를 정할 수 있음. 여러 번 시도해서 경험치를 쌓아야 함.
+
+
+
+* loss, optimizer, metrics, batch_size 등과 같은 옵션들 : parameter(파라미터)라고 함.
+우리가 나중에 하는 일 : hyper parameter tunning
+
+*batch_size를 없애도 실행은 됨. 어떻게? 기본값 default가 존재하기 때문. 기본값은 32.
