@@ -1,0 +1,67 @@
+인터넷이 연결되어 있는 컴퓨터 한 대 한대를 host
+
+웹서버를 운영하기 위한 컴퓨터 
+즉, 호스트를 빌려주는 회사 == web hosting 업체
+
+무료면서 유명한 서비스업체 : github
+
+programer들에게 성지와 같은 서비스인 github
+전세계의 수많은 오픈소스들이 여기서 만들어지고 있음
+
+#
+
+html 파일만을 서비스하고 싶을 때는
+static web hosting이라고 한다
+무료도 많고 가격도 저렴하다
+
+php, python, 등을 배우게 되면
+dynamic web hosting이 필요해진다
+
+
+지금 우리가 배운 건
+github를 통해 무료로
+index.html 우리의 html 파일을 web server에 전달하고
+web browser를 통해 visitor 들에게 우리 사이트를 공유한다
+
+github이 맞지 않다면 
+web hosting으로 검색
+종류가 많음
+우리가 배운 범위 안의 기술을 이용한 web hosting 을 찾으려면
+static web hosting이라고 찾으면 된다
+free static web hosting이라 하면 무료 서비스
+
+bitballon.com
+neocities.org
+amazon s3
+google cloud storage
+azure blob
+
+등이 있음(2017년)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
