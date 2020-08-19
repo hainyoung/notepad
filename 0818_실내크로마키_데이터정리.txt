@@ -1,0 +1,54 @@
+45번 : 자동차 + 2~3명
+
+53번 : 4명
+
+407번 : 4명
+
+411번 : 2명
+
+412번 : 편의점 의자 + 2명
+
+416번 : 3명
+
+417번 : 3명
+
+439번 : 2명
+
+
+################################################
+2020.08.18
+
+407 시작
+407-4_cam01_assault01_place04_day_spring - kicking까지 
+-> 1000개
+(0819)
+
+###################################################
+411 시작(2명 이거 우선적으로 라벨링)
+411-2_cam03_assault01_place08_night_spring - punching까지(411)
+411-3_cam02_assault01_place08_night_spring - punching까지(411에 추가)
+411-3_cam03_assault01_place08_night_spring - punching까지(411에 추가)
+411-4_cam01_assault01_place08_night_summer - punching까지 
+411-4_cam02_assault01_place08_night_winter - punching 까지
+-> 1000개
+
+
+411-2_cam02_assault01_place08_night_winter - threaten까지 normal 용 몇 개 추가
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

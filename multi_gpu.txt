@@ -1,0 +1,15 @@
+gpu 여러 장 분산해서 사용하려면
+
+tf.distribute.mirroredstrategy
+tf.distribute.strategy
+
+<최적 환경>
+tensorflow2.3
+keras2.4.?
+
+cuda 10.1 update2
+cudnn 10.1 v7.6.5
+
+cuda 10.2도 된다
+
+cuda 11도 됨
