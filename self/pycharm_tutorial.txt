@@ -1,0 +1,30 @@
+IDE 통합 개발 환경
+프로그램 만들 때 도움을 주는 소프트웨어
+
+파이참은 파이썬만을 위한 IDE
+파이썬 개발자들이 많이 사용함
+
+https://www.jetbrains.com/ko-kr/pycharm/
+다운로드(community ver.)
+
+# 설치 위치 : C드라이브 바로 하위
+
+# path 환경변수 경로 추가만 체크하고 설치함
+Add launchers dir to the PATH
+
+
+# Anaconda 설치 후 Pycharm Virtual ENV 연동하기 제목의 글 참조하여 가상환경 설정
+
+1. Settings - Prloject interpreter - Conda Environment
+- Location envs 뒤에 본인이 사용하고 싶은 가상환경 이름 설정
+- python version 선택
+- (현재, pycharm 작업 폴더는 가상환경 python37의 이름으로 python 3.7ver으로 설정해놓음)
+- Make available to all projects 에 체크표시
+
+2. Settings - Terminal - Shell path 
+- cmd.exe "/K" C:\Users\<사용자명>\Anaconda3\Scripts\activate.bat <env name>
+- 나의 경우엔
+- cmd.exe "/K" C:\Users\inyoung\Anaconda3\Scripts\activate.bat python37
+
+# Terminal: virtual Env에
+(python37) 라고 앞에 있으면 성공
