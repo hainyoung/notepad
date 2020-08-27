@@ -1,0 +1,26 @@
+# WEB1 부록 - 동영상 삽입
+youtube에서 공유 - 퍼가기 - 소스 복사
+그대로 html 파일에 붙여 넣기!
+
+# WEB1 부록 - 댓글 기능 추가
+DISQUS or LiveRE 사용
+
+수업에선
+DISQUS 사용
+
+사이트 UI가 변경된것 같네요
+로그인 후 우측 상단 톱니모양에서
+add disqus to site 선택
+install on your site 선택
+하단의 get start 하시면 됩니다.
+
+# WEB1 부록 - 채팅 기능 추가
+tawk 사이트
+
+
+
+
+
+로컬호스트로 해서 안되는 분들은 아마도 bitnami폴더 안에 넣어 놓은
+html파일을 수정하신게 아니라 그냥 바탕화면에 만들어 놓은 웹html만 고쳐서 그럴거에요 
+bitnami안에 들어가셔서 index.html고쳐야 하실 겁니다.
