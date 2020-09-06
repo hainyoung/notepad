@@ -1,0 +1,1 @@
+rm -r .git : git inti 취소 명령어
