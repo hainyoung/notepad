@@ -1,0 +1,20 @@
+Nvidia 그래픽 최신 드라이버 설치
+
+아나콘다로 파이썬 설치
+
+Cuda 설치
+
+CuDNN 설치
+-> Cuda 폴더 내의 bin, include, lib, 그리고 텍스트 파일 모두 복사해서
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0 에 덮어쓰기
+
+Tensorflow 설치
+pip install tensorflow-gpu==version
+
+Keras 설치
+pip install keras==version
+
+import tensorflow as tf 
+실행 시
+Successfully opened dynamic library cudart64_101.dll 이
+터미널창에 뜨면 정상적으로 Cuda 가 실행되는 것!
