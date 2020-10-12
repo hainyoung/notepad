@@ -1,0 +1,11 @@
+how to use jupyter notebook in my virtual environment
+
+# step 
+
+H:
+
+activate project01
+
+conda install jupyter notebook
+
+jupyter notebook
