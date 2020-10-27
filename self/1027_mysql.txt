@@ -1,0 +1,11 @@
+MYSQL
+
+SELECT * FROM
+
+CREATE 
+
+INSERT INTO
+
+as a
+
+'| |' ?
