@@ -1,0 +1,171 @@
+windon 10에서 YOLO(Darknet) 설치
+
+환경 : Windon10
+
+설치할 것
+1. Visual Studio 2017(가장 먼저 설치!)
+2. CUDA
+3. CUDNN
+4. OpenCV
+
+1. Visual Studio 2017
+드라이브에 올려둔 Visual Studio Community 2017.exe 로 설치
+
+
+2. CUDA
+그래픽 카드에 맞게 설치
+CUDA Toolkit 10.1 Update2 로 설치함
+local 실행파일 다운로드
+설치경로는 디폴트 그대로
+설치 옵션은 사용자 정의 설치에서 Visual Studio Integration 체크 해제
+설치 후, 시스템 환경 변수 편집에서
+CUDA_PATH, CUDA_PATH_V10_1에 등록 되었는지 확인
+
+3. cuDNN
+CUDA10.1에 맞게 cuDNN v.7.6.4 다운로드
+cuda라는 폴더 아래에 bin, include, lib, NVIDIA~ 네개 모두 
+NVIDIA Computing 어쩌구 CUDA 폴더에 복 붙
+
+4. OpenCV 설치
+https://sourceforge.net/projects/opencvlibrary/files/opencv-win/3.4.0/opencv-3.4.0-vc14_vc15.exe/download
+위의 주소로 가서 3.4.0 version 다운로드
+
+C드라이브 아래에 opencv 폴더로 생성
+
+환경변수에서 시스템 변수 Path에 C:\opencv\build\x64\vc14\bin 경로 추가
+
+5. Darknet 다운로드
+https://github.com/AlexeyAB/darknet/
+C드라이브에 압축 해제
+
+==================================================
+darknet build
+비주얼 스튜디오 2017에서 -> 이 때 v.141 어쩌구 뜨면 업데이트 실행
+darknet-master\build\darknet\darknet.sln 열기
+Release, x64 상태로 변경
+
+프로젝트 - 속성
+
+구성 : Release, 플랫폼 : x64
+C/C++ / 일반 / 추가 포함 디렉터리
+기존에 있던 opencv3.0 어쩌구는 삭제
+C:\opencv\build\include 경로 상단에 추가 적용!
+* 구성을 Debug로 바꾸고 동일하게 진행 적용!
+
+구성 : Release, 플랫폼 : x64
+C/C++ / 전처리기 / 전처리기 정의에
+'OPENCV', 'CUDNN', 'CUDNN_HALF' 있는지 확인하고 없으면 추가 적용!
+* Debug도 동일 진행 적용!
+
+구성 : Release, 플랫폼 : x64
+링커 / 일반 / 추가 포함 디렉터리
+기존에 있던 opencv3.0 어쩌구는 삭제
+C:\opencv\build\x64\vc14\lib 경로 상단에 추가 적용!
+* 구성을 Debug로 바꾸고 동일하게 진행 적용!
+
+솔루션 탐색이에서 darknet을 우클릭 - 빌드 종속성 - 사용자 지정 빌드
+CUDA 10.1만 체크 / 나머지는 체크 되어 있다면 해제
+
+마지막으로 ctrl + F5로 빌드
+문제없다면 성공 1로 출력된다!
+
+# import darknet을 위한 빌드
+build/darknet/yolo_cpp_dll.sln 이것도 위의 darknet.sln과 같이 설정해준다
+빌드 전, 코드 수정이 필요
+
+1)
+image.c 파일에 500번대 쯤이라는데
+나는 526번째에 아래의 코드 추가
+
+#ifdef NUMPY
+image ndarray_to_image(unsigned char* src, long* shape, long* strides)
+{
+    int h = shape[0];
+    int w = shape[1];
+    int c = shape[2];
+    int step_h = strides[0];
+    int step_w = strides[1];
+    int step_c = strides[2];
+    image im = make_image(w, h, c);
+    int i, j, k;
+    int index1, index2 = 0;
+    for (i = 0; i < h; ++i) {
+        for (k = 0; k < c; ++k) {
+            for (j = 0; j < w; ++j) {
+                index1 = k * w*h + i * w + j;
+                index2 = step_h * i + step_w * j + step_c * k;
+                //fprintf(stderr, "w=%d h=%d c=%d step_w=%d step_h=%d step_c=%d \n", w, h, c, step_w, step_h, step_c);
+                //fprintf(stderr, "im.data[%d]=%u data[%d]=%f \n", index1, src[index2], index2, src[index2]/255.);
+                im.data[index1] = src[index2] / 255.;
+            }
+        }
+    }
+    rgbgr_image(im);
+    return im;
+}
+#endif
+
+2) darknet.h 파일에
+3번째줄에 #define NUMPY 추가
+
+1040번째 줄 쯤
+#ifdef NUMPY
+LIB_API image ndarray_to_image(unsigned char* src, long* shape, long* strides);
+#endif
+
+release , x64 상태에서 빌드
+
+build/darknet 안에 x64파일 통째로 anaconda3/lib/site-packages로 이동
+이름은 darknet으로 변경해야 import darknet으로 할 수 있다
+이름 변경 안하고 옮기면 from x64 impot darknet이라고 해야 함
+
+# import darknet 예시
+from darknet import darknet
+import cv2, numpy as np
+from ctypes import *
+ 
+net = darknet.load_net(b"C:/Users/bitcamp/anaconda3/Lib/site-packages/darknet/cfg/yolov3.cfg", b"C:/Users/bitcamp/anaconda3/Lib/site-packages/darknet/weight/yolov3.weights", 0) 
+meta = darknet.load_meta(b"C:/Users/bitcamp/anaconda3/Lib/site-packages/darknet/data/coco.data") 
+cap = cv2.VideoCapture("C:/Users/bitcamp/anaconda3/Lib/site-packages/darknet/26-4_cam01_assault01_place01_night_spring.mp4") 
+print(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+print(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+while(cap.isOpened()):
+    ret, image = cap.read()
+    image = cv2.resize(image, dsize=(480, 640), interpolation=cv2.INTER_AREA)
+    print(image.shape)
+    if not ret: 
+        break 
+    frame = darknet.nparray_to_image(image)
+    r = darknet.detect_image(net, meta, frame) 
+ 
+    boxes = [] 
+ 
+    for k in range(len(r)): 
+        width = r[k][2][2] 
+        height = r[k][2][3] 
+        center_x = r[k][2][0] 
+        center_y = r[k][2][1] 
+        bottomLeft_x = center_x - (width / 2) 
+        bottomLeft_y = center_y - (height / 2) 
+        x, y, w, h = bottomLeft_x, bottomLeft_y, width, height 
+        boxes.append((x, y, w, h))
+ 
+    for k in range(len(boxes)): 
+        x, y, w, h = boxes[k] 
+        top = max(0, np.floor(x + 0.5).astype(int)) 
+        left = max(0, np.floor(y + 0.5).astype(int)) 
+        right = min(image.shape[1], np.floor(x + w + 0.5).astype(int)) 
+        bottom = min(image.shape[0], np.floor(y + h + 0.5).astype(int)) 
+        cv2.rectangle(image, (top, left), (right, bottom), (255, 0, 0), 2) 
+        cv2.line(image, (top + int(w / 2), left), (top + int(w / 2), left + int(h)), (0,255,0), 3) 
+        cv2.line(image, (top, left + int(h / 2)), (top + int(w), left + int(h / 2)), (0,255,0), 3) 
+        cv2.circle(image, (top + int(w / 2), left + int(h / 2)), 2, tuple((0,0,255)), 5)
+ 
+    cv2.imshow('frame', image) 
+    if cv2.waitKey(1) & 0xFF == ord('q'): 
+        break
+ 
+cap.release()
+
+
+
