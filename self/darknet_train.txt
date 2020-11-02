@@ -1,0 +1,9 @@
+data에 obj.data
+cfg에 yolov3.cfg , darknet53.conv74
+
+obj.data에 들어가는 train 파일경로 담긴 텍스트파일은 절대경로로 만들어둠
+
+학습실행명령어
+~x64로 들어가서
+darknet.exe detector train cfg/obj.data cfg/obj.cfg cfg/darknet53.conv.74
+

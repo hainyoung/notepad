@@ -1,0 +1,17 @@
+Linux 명령어
+
+ubuntu version check
+cat /etc/issue
+
+ubuntu server install desktop GUI
+sudo apt-get update
+sudo apt-get upgrade
+
+# include firfox/openoffice etc. (700MB)
+apt-get install ubuntu-desktop
+
+# install minimally (170MB)
+sudo apt-get install --no-install-recommends ubuntu-desktop
+
+# run Ubuntu Desktop
+startx
