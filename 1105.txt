@@ -1,0 +1,8 @@
+ubuntu 16.04 
+cdua 11.0 설치 완료
+cudnn 설치 시도
+
+darknet make
+
+NIPA 개인으로 신청 해 보기 문서 작성 제출!!!!!!!!
+신청 수락되면 NIPA 전달용 이메일 계정 생성하기
