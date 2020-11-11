@@ -1,0 +1,2 @@
+Get-ChildItem -Path 'H:\hainyoung\traffic_bollard_data\car' -Filter '*.JPG' | 
+    foreach { Rename-Item $_.FullName ($_.FullName-replace '\.JPG$','.jpg') }
