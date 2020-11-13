@@ -1,0 +1,5 @@
+# darknet 동영상 테스트
+darknet.exe detector demo data/3_classes.data data/3classes_train_obj_cfg backup/backup1112_4600/yolov4-obj_best.weights -i 0 -thresh 0.50 data/3classes/test_4.mp4
+
+# 특정 가중치 accuracy 알아보기
+darknet.exe detector map data/obj.data cfg/yolov4-obj.cfg /mydrive/yolov4/backup/yolov4-obj_1000.weights

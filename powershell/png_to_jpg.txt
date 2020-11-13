@@ -1,4 +1,4 @@
-$files = Get-ChildItem "H:\hainyoung\traffic_bollard_data\traffic_bollard" -Filter *.png -file -Recurse | 
+$files = Get-ChildItem "H:\hainyoung\suwon_dataset\traffic_barrel_data\car" -Filter *.png -file -Recurse | 
 foreach-object {
 
     $Source = $_.FullName
