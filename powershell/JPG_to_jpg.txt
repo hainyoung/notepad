@@ -1,2 +1,2 @@
-Get-ChildItem -Path 'H:\hainyoung\suwon_dataset\traffic_cone_data\car' -Filter '*.JPG' | 
-    foreach { Rename-Item $_.FullName ($_.FullName-replace '\.JPG$','.jpg') }
+Get-ChildItem -Path 'H:\hainyoung\boss\1119\캡쳐\11월 07일' -Filter '*.PNG' | 
+    foreach { Rename-Item $_.FullName ($_.FullName-replace '\.PNG$','.png') }
